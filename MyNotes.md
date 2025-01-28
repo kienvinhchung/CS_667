@@ -31,3 +31,5 @@ Current directory: `pwd` (print working directory)
 Back to parent folder: `cd ..`
 
 Create file: `touch sample.py`
+
+Run/execute a python file: `python sample.py`
