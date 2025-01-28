@@ -29,3 +29,6 @@ Change folder: `cd projects` (move to projects folder just created)
 Current directory: `pwd` (print working directory)
 
 Back to parent folder: `cd ..`
+
+Create file: `touch sample.py`
+
