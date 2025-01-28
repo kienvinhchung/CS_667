@@ -4,9 +4,9 @@ Markdown cheatsheet: https://www.markdownguide.org/cheat-sheet/
 
 ## Shortcuts:
 
-Clear terminal screen: <ins>*Ctrl + L*<ins>
+Clear terminal screen: *Ctrl + L*
 
-Show/hide terminal: <ins>Ctrl + `<ins>
+Show/hide terminal: ***Ctrl + `***
 
 ## Commands:
 
