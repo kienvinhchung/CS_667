@@ -4,9 +4,9 @@ Markdown cheatsheet: https://www.markdownguide.org/cheat-sheet/
 
 ## Shortcuts:
 
-Clear terminal screen: *Ctrl + L*
+Clear terminal screen: <ins>*Ctrl + L*<ins>
 
-Show/hide terminal: *Ctrl + `*
+Show/hide terminal: <ins>Ctrl + `<ins>
 
 ## Commands:
 
@@ -31,4 +31,3 @@ Current directory: `pwd` (print working directory)
 Back to parent folder: `cd ..`
 
 Create file: `touch sample.py`
-
