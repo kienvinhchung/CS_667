@@ -27,3 +27,5 @@ Create folder: `mkdir projects` (make directory names projects)
 Change folder: `cd projects` (move to projects folder just created)
 
 Current directory: `pwd` (print working directory)
+
+Back to parent folder: `cd ..`
