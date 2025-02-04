@@ -317,4 +317,23 @@ def validate_url(prompt, url):
 
 
 
-validate_url("I have just been on an international flight, can i come back home to hold my 1 month old newborn?", "https://www.bhtp.com/blog/when-safe-to-travel-with-newborn/")
+
+
+# CREDIBILITY SCORE:
+def credibility_score(prompt, url):
+  scores = validate_url(prompt, url)
+  credibility_score = scores['final_score']
+  explanation = "..." #TEMPORARY
+  result = {'score': round(credibility_score, 2), 'explanation': explanation}
+  return result
+
+
+
+
+
+
+# RESULTS:
+user_prompt = "I have just been on an international flight, can i come back home to hold my 1 month old newborn?"
+url_ref = "https://www.bhtp.com/blog/when-safe-to-travel-with-newborn/"
+print(validate_url(user_prompt, url_ref))
+print(credibility_score(user_prompt, url_ref))
