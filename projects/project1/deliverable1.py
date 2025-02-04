@@ -5,8 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 from transformers import pipeline
 from sentence_transformers import SentenceTransformer, util
-import serpapi
-print(dir(serpapi))  # Check available functions/classes
+from serpapi import GoogleSearch
 from datetime import datetime
 
 
@@ -25,20 +24,7 @@ similarity_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
 # API KEYS:
 
-# https://moz.com/api/dashboard
-MOZ_API_KEY = "bW96c2NhcGUtckh0anp1TzNPcjpxckVGUWpCR042aDRQcllsVHRLNG1wN0hwWXZWN1g1cw=="
-MOZ_API_URL = "https://lsapi.seomoz.com/v2/url_metrics"
 
-# https://console.cloud.google.com/apis/credentials?inv=1&invt=AboofA&project=cs667-449902&supportedpurview=project
-GOOGLE_API_KEY = "AIzaSyAfERs1s7emTH8IQfpMe6PGxVRfIcx5BC0"
-GOOGLE_FACT_CHECK_URL = "https://factchecktools.googleapis.com/v1alpha1/claims:search"
-GOOGLE_SAFE_BROWSING_URL = "https://safebrowsing.googleapis.com/v4/threatMatches:find"
-
-# https://user.whoisxmlapi.com/products
-WHOIS_API_KEY = "at_ArWTndFl6FlKORh32FofvNGQV4GEd"
-
-# https://serpapi.com/dashboard
-SERP_API_KEY = "1680750014c6820e595f2cc974a471abca789e89a8e8062475ceff88a73829bb"
 
 
 
