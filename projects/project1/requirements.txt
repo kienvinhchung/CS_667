@@ -2,4 +2,4 @@ requests
 beautifulsoup4
 transformers
 sentence-transformers
-serpapi
+google-search-results

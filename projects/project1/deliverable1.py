@@ -1,5 +1,4 @@
-# pip install requests beautifulsoup4 transformers sentence-transformers serpapi
-# pip install --upgrade google-search-results
+# pip install requests beautifulsoup4 transformers sentence-transformers google-search-results
 
 # IMPORT LIBRARIES:
 import requests
@@ -23,12 +22,19 @@ similarity_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
 
 
-# API URLs:
+# APIs:
 
+# https://console.cloud.google.com/apis/credentials?inv=1&invt=AboofA&project=cs667-449902&supportedpurview=project
+GOOGLE_API_KEY = "YOUR_GOOGLE_API_KEY"
 GOOGLE_FACT_CHECK_URL = "https://factchecktools.googleapis.com/v1alpha1/claims:search"
 GOOGLE_SAFE_BROWSING_URL = "https://safebrowsing.googleapis.com/v4/threatMatches:find"
 
+# https://user.whoisxmlapi.com/products
+WHOIS_API_KEY = "YOUR_WHOIS_API_KEY"
 WHOIS_URL = "https://www.whoisxmlapi.com/whoisserver/WhoisService"
+
+# https://serpapi.com/dashboard
+SERP_API_KEY = "YOUR_SERP_API_KEY"
 
 
 
