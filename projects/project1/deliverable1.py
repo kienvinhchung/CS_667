@@ -1,4 +1,5 @@
 # pip install requests beautifulsoup4 transformers sentence-transformers serpapi
+# pip install --upgrade google-search-results
 
 # IMPORT LIBRARIES:
 import requests
@@ -22,9 +23,12 @@ similarity_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
 
 
-# API KEYS:
+# API URLs:
 
+GOOGLE_FACT_CHECK_URL = "https://factchecktools.googleapis.com/v1alpha1/claims:search"
+GOOGLE_SAFE_BROWSING_URL = "https://safebrowsing.googleapis.com/v4/threatMatches:find"
 
+WHOIS_URL = "https://www.whoisxmlapi.com/whoisserver/WhoisService"
 
 
 
@@ -67,7 +71,7 @@ def get_domain_age_score(url):
     """
     try:
         domain = url.split("//")[-1].split("/")[0]  # Extract domain name
-        whois_url = f"https://www.whoisxmlapi.com/whoisserver/WhoisService?apiKey={WHOIS_API_KEY}&domainName={domain}&outputFormat=json"
+        whois_url = f"{WHOIS_URL}?apiKey={WHOIS_API_KEY}&domainName={domain}&outputFormat=json"
         response = requests.get(whois_url)
         data = response.json()
         if "WhoisRecord" in data and "createdDate" in data["WhoisRecord"]:
