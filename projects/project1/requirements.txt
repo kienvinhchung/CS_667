@@ -1,7 +1,5 @@
 requests
 beautifulsoup4
 transformers
-sentence-transformersgoogle-api-python-client
-scitkit-learn
-numpy
-pandas
+sentence-transformers
+serpapi
