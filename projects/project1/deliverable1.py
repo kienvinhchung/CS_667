@@ -146,7 +146,7 @@ def get_content_relevance_score(url, query):
     embeddings1 = similarity_model.encode(query, convert_to_tensor=True)
     embeddings2 = similarity_model.encode(text, convert_to_tensor=True)
     similarity_score = util.pytorch_cos_sim(embeddings1, embeddings2).item()
-    return round(similarity_score*100, 1)
+    return round(similarity_score*100, 2)
 
 
 
@@ -220,7 +220,7 @@ def get_bias_score(url):
             bias_score = 40 - (score * 40)  # Bias starts at 40%, scales down to 0%
         else:  # Neutral
             bias_score = 50  # Set a mid-point for neutrality
-        return round(score*100, 1)  # Reward neutral/positive content
+        return round(score*100, 2)  # Reward neutral/positive content
     except requests.exceptions.RequestException as e:
         return f"Error: {str(e)}"
 
@@ -277,27 +277,27 @@ def validate_url(prompt, url):
     Then, weight is applied according to WEIGHTS dict above to calculate the final score.
     """
     domain_trust_score = get_domain_trust_score(url)
-    weighted_domain_trust_score = domain_trust_score * WEIGHTS['domain_trust']
+    weighted_domain_trust_score = round(domain_trust_score * WEIGHTS['domain_trust'], 2)
 
     content_relevance_score = get_content_relevance_score(url, prompt)
-    weighted_content_relevance_score = content_relevance_score * WEIGHTS['content_relevance']
+    weighted_content_relevance_score = round(content_relevance_score * WEIGHTS['content_relevance'], 2)
 
     fact_check_score = get_fact_check_score(prompt)
-    weighted_fact_check_score = fact_check_score * WEIGHTS['fact_check']
+    weighted_fact_check_score = round(fact_check_score * WEIGHTS['fact_check'], 2)
 
     bias_score = get_bias_score(url)
-    weighted_bias_score = bias_score * WEIGHTS['bias']
+    weighted_bias_score = round(bias_score * WEIGHTS['bias'], 2)
 
     citation_score = get_citation_score(prompt)
-    weighted_citation_score = citation_score * WEIGHTS['citation']
+    weighted_citation_score = round(citation_score * WEIGHTS['citation'], 2)
 
-    final_score = (
-        weighted_domain_trust_score + 
-        weighted_content_relevance_score + 
-        weighted_fact_check_score + 
-        weighted_bias_score + 
+    final_score = round(
+        weighted_domain_trust_score +
+        weighted_content_relevance_score +
+        weighted_fact_check_score +
+        weighted_bias_score +
         weighted_citation_score
-    )
+    , 2)
 
     return {
         "url": url,
@@ -319,11 +319,21 @@ def validate_url(prompt, url):
 
 
 
+# TEMPORARY
+def get_explanation():
+  explanation = "___" # TEMPORARY
+  return explanation
+
+
+
+
+
+
 # CREDIBILITY SCORE:
 def credibility_score(prompt, url):
   scores = validate_url(prompt, url)
   credibility_score = scores['final_score']
-  explanation = "..." #TEMPORARY
+  explanation = get_explanation()
   result = {'score': round(credibility_score, 2), 'explanation': explanation}
   return result
 
@@ -335,5 +345,6 @@ def credibility_score(prompt, url):
 # RESULTS:
 user_prompt = "I have just been on an international flight, can i come back home to hold my 1 month old newborn?"
 url_ref = "https://www.bhtp.com/blog/when-safe-to-travel-with-newborn/"
-print(validate_url(user_prompt, url_ref))
-print(credibility_score(user_prompt, url_ref))
+
+score = credibility_score(user_prompt, url_ref)
+print(score)
