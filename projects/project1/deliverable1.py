@@ -373,3 +373,29 @@ print(score)
 
 # OUTPUT:
 # {'score': 63.0, 'ratings': '★★★☆☆', 'explanation': '___'}
+
+
+
+
+
+
+# TO JSON OBJECT:
+import json
+def get_json():
+  return json.dumps(score, ensure_ascii=False, indent=2)
+json_object = get_json()
+print(json_object)
+
+# WRITE TO JSON FILE:
+'''
+with open("result.json", "w") as json_file:
+  json_file.write(json_object)
+'''
+
+# DOWNLOAD JSON FILE:
+'''
+from google.colab import files
+files.download("result.json")
+'''
+
+# View result.json in the same directory
