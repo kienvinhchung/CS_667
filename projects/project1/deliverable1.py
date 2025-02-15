@@ -41,7 +41,7 @@ SERP_API_KEY = "YOUR_SERP_API_KEY"
 
 
 
-# DOMAIN TRUST SCORES:
+# DOMAIN TRUST SCORES (consist of safety score, domain age score, and popularity score):
 
 # Google safefy score function:
 def get_google_safety_score(url):
@@ -319,7 +319,26 @@ def validate_url(prompt, url):
 
 
 
-# TEMPORARY
+# STAR RATINGS:
+def get_star_ratings(score):
+    stars = (score / 100) * 5
+    full_stars = int(stars)
+    half_star = int((stars - full_stars) >= 0.5)
+    empty_stars = 5 - full_stars - half_star
+
+    filled = '★' * full_stars
+    half = '⯨' * half_star
+    empty = '☆' * empty_stars
+
+    star_ratings = filled + half + empty
+    return star_ratings
+
+
+
+
+
+
+# TEMPORARY Explanation
 def get_explanation():
   explanation = "___" # TEMPORARY
   return explanation
@@ -331,11 +350,12 @@ def get_explanation():
 
 # CREDIBILITY SCORE:
 def credibility_score(prompt, url):
-  scores = validate_url(prompt, url)
-  credibility_score = scores['final_score']
-  explanation = get_explanation()
-  result = {'score': round(credibility_score, 2), 'explanation': explanation}
-  return result
+    scores = validate_url(prompt, url)
+    credibility_score = round(scores['final_score'], 2)
+    ratings = get_star_ratings(credibility_score)
+    explanation = get_explanation()
+    result = {'score': credibility_score, 'ratings': ratings, 'explanation': explanation}
+    return result
 
 
 
@@ -346,5 +366,10 @@ def credibility_score(prompt, url):
 user_prompt = "I have just been on an international flight, can i come back home to hold my 1 month old newborn?"
 url_ref = "https://www.bhtp.com/blog/when-safe-to-travel-with-newborn/"
 
+'''
 score = credibility_score(user_prompt, url_ref)
 print(score)
+'''
+
+# OUTPUT:
+# {'score': 63.0, 'ratings': '★★★☆☆', 'explanation': '___'}
