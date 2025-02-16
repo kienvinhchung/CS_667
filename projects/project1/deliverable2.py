@@ -27,15 +27,18 @@ similarity_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 # Links are provided to API signup.
 
 # https://console.cloud.google.com/apis/credentials?inv=1&invt=AboofA&project=cs667-449902&supportedpurview=project
+# YOUR_GOOGLE_API_KEY
 GOOGLE_API_KEY = "YOUR_GOOGLE_API_KEY"
 GOOGLE_FACT_CHECK_URL = "https://factchecktools.googleapis.com/v1alpha1/claims:search"
 GOOGLE_SAFE_BROWSING_URL = "https://safebrowsing.googleapis.com/v4/threatMatches:find"
 
 # https://user.whoisxmlapi.com/products
+# YOUR_WHOIS_API_KEY
 WHOIS_API_KEY = "YOUR_WHOIS_API_KEY"
 WHOIS_URL = "https://www.whoisxmlapi.com/whoisserver/WhoisService"
 
 # https://serpapi.com/dashboard
+# YOUR_SERP_API_KEY
 SERP_API_KEY = "YOUR_SERP_API_KEY"
 
 
@@ -358,43 +361,3 @@ def credibility_score(prompt, url):
     explanation = get_explanation()
     result = {'score': credibility_score, 'ratings': ratings, 'explanation': explanation}
     return result
-
-
-
-
-
-
-# RESULTS:
-user_prompt = "I have just been on an international flight, can i come back home to hold my 1 month old newborn?"
-url_ref = "https://www.bhtp.com/blog/when-safe-to-travel-with-newborn/"
-
-score = credibility_score(user_prompt, url_ref)
-print(score)
-# OUTPUT:
-# {'score': 63.0, 'ratings': '★★★☆☆', 'explanation': '___'}
-
-
-
-
-
-
-# TO JSON OBJECT:
-import json
-def get_json():
-  return json.dumps(score, ensure_ascii=False, indent=2)
-json_object = get_json()
-print(json_object)
-
-# WRITE TO JSON FILE:
-'''
-with open("result.json", "w") as json_file:
-  json_file.write(json_object)
-'''
-
-# DOWNLOAD JSON FILE:
-'''
-from google.colab import files
-files.download("result.json")
-'''
-
-# View result.json in the same directory
