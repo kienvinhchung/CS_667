@@ -14,6 +14,7 @@ json_object_result = get_json()
 print(json_object_result)
 
 # FILE OUTPUT:
+# View result.json in the same directory
 '''
 {
   "score": 63.0,
@@ -23,16 +24,15 @@ print(json_object_result)
 '''
 
 
+
+
 # WRITE TO JSON FILE:
 '''
 with open("result.json", "w") as json_file:
   json_file.write(json_object)
 '''
-
 # DOWNLOAD JSON FILE:
 '''
 from google.colab import files
 files.download("result.json")
 '''
-
-# View result.json in the same directory
