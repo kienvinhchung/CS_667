@@ -24,6 +24,8 @@ similarity_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
 # APIs:
 
+# Links are provided to API signup.
+
 # https://console.cloud.google.com/apis/credentials?inv=1&invt=AboofA&project=cs667-449902&supportedpurview=project
 GOOGLE_API_KEY = "YOUR_GOOGLE_API_KEY"
 GOOGLE_FACT_CHECK_URL = "https://factchecktools.googleapis.com/v1alpha1/claims:search"
