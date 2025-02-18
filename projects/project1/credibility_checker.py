@@ -10,11 +10,11 @@ from datetime import datetime
 
 class CredibilityChecker:
     # YOUR_GOOGLE_API_KEY
-    GOOGLE_API_KEY = "AIzaSyC1imb_7YYHq3mqgYne2XM8jq7bOAhje7Q"
+    GOOGLE_API_KEY = ""
     # YOUR_WHOIS_API_KEY
-    WHOIS_API_KEY = "at_H3kTZi5HoT5GzHKFc9es9pX2JUiyO"
+    WHOIS_API_KEY = ""
     # YOUR_SERP_API_KEY
-    SERP_API_KEY = "dbce73693312abcbbe776e96258fe12e1bba5fc224aab70bcbab42b872368479"
+    SERP_API_KEY = ""
     # URLs:
     GOOGLE_FACT_CHECK_URL = "https://factchecktools.googleapis.com/v1alpha1/claims:search"
     GOOGLE_SAFE_BROWSING_URL = "https://safebrowsing.googleapis.com/v4/threatMatches:find"
