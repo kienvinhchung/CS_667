@@ -1,5 +1,5 @@
 import streamlit as st
-from projects.project1.app.credibility_checker import CredibilityChecker
+from credibility_checker import CredibilityChecker
 
 checker = CredibilityChecker()
 
