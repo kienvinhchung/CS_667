@@ -1,0 +1,7 @@
+streamlit
+
+requests
+beautifulsoup4
+transformers
+sentence-transformers
+google-search-results
