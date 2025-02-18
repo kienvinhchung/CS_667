@@ -16,6 +16,10 @@ if st.button("Check Credibility"):
         # Display the results
         st.success("✅ Credibility Score Calculated!")
         st.write(f"**Score:** {result['score']} / 100")
-        st.write(f"**Star Rating:** {result['ratings']}")
+        st.write(f"**Ratings:** {result['ratings']}")
     else:
         st.warning("⚠️ Please enter both a query and a URL.")
+
+
+
+# View app output screenshot in "app_result.png"

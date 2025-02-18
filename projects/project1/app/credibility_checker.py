@@ -258,6 +258,7 @@ class CredibilityChecker:
 
 
 # Example
+'''
 checker = CredibilityChecker()
 
 user_prompt = "I have just been on an international flight, can i come back home to hold my 1 month old newborn?"
@@ -265,6 +266,7 @@ url_ref = "https://www.bhtp.com/blog/when-safe-to-travel-with-newborn/"
 
 result = checker.credibility_score(user_prompt, url_ref)
 print(result)
+'''
 
 # Run file using teminal:
 # python credibility_checker.py
