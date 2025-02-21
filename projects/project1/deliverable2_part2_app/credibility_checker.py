@@ -7,19 +7,27 @@ from sentence_transformers import SentenceTransformer, util
 from serpapi import GoogleSearch
 from datetime import datetime
 
-import os
-from dotenv import load_dotenv
+import streamlit as st
 
-load_dotenv()
+import os
+#from dotenv import load_dotenv
+#load_dotenv()
 
 
 class CredibilityChecker:
+    # For keys stored in .env (.gitignore)
     # YOUR_GOOGLE_API_KEY
-    GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", "")
+    # GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", "")
     # YOUR_WHOIS_API_KEY
-    WHOIS_API_KEY = os.environ.get("WHOIS_API_KEY", "")
+    # WHOIS_API_KEY = os.environ.get("WHOIS_API_KEY", "")
     # YOUR_SERP_API_KEY
-    SERP_API_KEY = os.environ.get("SERP_API_KEY", "")
+    # SERP_API_KEY = os.environ.get("SERP_API_KEY", "")
+
+    # For streamlit deployment
+    GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
+    WHOIS_API_KEY = st.secrets["WHOIS_API_KEY"]
+    SERP_API_KEY = st.secrets["SERP_API_KEY"]
+
     # URLs:
     GOOGLE_FACT_CHECK_URL = "https://factchecktools.googleapis.com/v1alpha1/claims:search"
     GOOGLE_SAFE_BROWSING_URL = "https://safebrowsing.googleapis.com/v4/threatMatches:find"
