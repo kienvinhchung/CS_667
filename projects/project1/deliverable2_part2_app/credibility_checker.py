@@ -233,9 +233,7 @@ class CredibilityChecker:
             explanations.append("Potential bias detected.")
         elif citation_score < 50:
             explanations.append("Very few citations found for this content.")
-        else:
-            " ".join(explanations) if explanations else "This source is credible and relevant!"
-
+        
         return {
             "url": url,
             "domain_trust": domain_trust_score,
@@ -249,7 +247,7 @@ class CredibilityChecker:
             "citation_score": citation_score,
             "w_citation_score": weighted_citation_score,
             "final_score": final_score,
-            "explanations": explanations
+            "explanations": " ".join(explanations) if explanations else "This source is credible and relevant!"
         }
 
 
