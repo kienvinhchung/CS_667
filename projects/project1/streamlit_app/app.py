@@ -23,4 +23,4 @@ if st.button("Check Credibility"):
 
 
 
-# View app output screenshot in "app_result.png"
+# View app output screenshot in "app_result_with_explanation.png"

@@ -289,3 +289,6 @@ print(result)
 
 # OUTPUT (before explanation):
 # {'score': 63.0, 'ratings': '★★★☆☆', 'explanation': '___'}
+
+# OUTPUT (with explanation generator):
+# {'score': 63.0, 'ratings': '★★★☆☆', 'explanation': 'Limited fact-checking reference found.'}
