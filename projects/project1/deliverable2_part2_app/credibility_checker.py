@@ -24,9 +24,9 @@ class CredibilityChecker:
     #SERP_API_KEY = os.environ.get("SERP_API_KEY", "")
 
     # For streamlit deployment
-    #GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
-    #WHOIS_API_KEY = st.secrets["WHOIS_API_KEY"]
-    #SERP_API_KEY = st.secrets["SERP_API_KEY"]
+    GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
+    WHOIS_API_KEY = st.secrets["WHOIS_API_KEY"]
+    SERP_API_KEY = st.secrets["SERP_API_KEY"]
 
     # URLs:
     GOOGLE_FACT_CHECK_URL = "https://factchecktools.googleapis.com/v1alpha1/claims:search"
