@@ -17,16 +17,16 @@ import os
 class CredibilityChecker:
     # For keys stored in .env (.gitignore)
     # YOUR_GOOGLE_API_KEY
-    # GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", "")
+    #GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", "")
     # YOUR_WHOIS_API_KEY
-    # WHOIS_API_KEY = os.environ.get("WHOIS_API_KEY", "")
+    #WHOIS_API_KEY = os.environ.get("WHOIS_API_KEY", "")
     # YOUR_SERP_API_KEY
-    # SERP_API_KEY = os.environ.get("SERP_API_KEY", "")
+    #SERP_API_KEY = os.environ.get("SERP_API_KEY", "")
 
     # For streamlit deployment
-    GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
-    WHOIS_API_KEY = st.secrets["WHOIS_API_KEY"]
-    SERP_API_KEY = st.secrets["SERP_API_KEY"]
+    #GOOGLE_API_KEY = st.secrets["GOOGLE_API_KEY"]
+    #WHOIS_API_KEY = st.secrets["WHOIS_API_KEY"]
+    #SERP_API_KEY = st.secrets["SERP_API_KEY"]
 
     # URLs:
     GOOGLE_FACT_CHECK_URL = "https://factchecktools.googleapis.com/v1alpha1/claims:search"
@@ -196,6 +196,7 @@ class CredibilityChecker:
             return min(num_results * 10, 100)  # Each result adds 10 points, max 100
         return 0  # No citations found
 
+    # Compile scores
 
     def validate_url(self, prompt, url):
         domain_trust_score = self.get_domain_trust_score(url)
@@ -221,6 +222,20 @@ class CredibilityChecker:
             weighted_citation_score
         , 2)
 
+        explanations = []
+        if domain_trust_score < 50:
+            explanations.append("Low domain trust consists of domain safety, age, and popularity.")
+        elif content_relevance_score < 50:
+            explanations.append("Content is not relevant to your query.")
+        elif fact_check_score < 50:
+            explanations.append("Limited fact-checking reference found.")
+        elif bias_score < 50:
+            explanations.append("Potential bias detected.")
+        elif citation_score < 50:
+            explanations.append("Very few citations found for this content.")
+        else:
+            " ".join(explanations) if explanations else "This source is credible and relevant!"
+
         return {
             "url": url,
             "domain_trust": domain_trust_score,
@@ -233,7 +248,8 @@ class CredibilityChecker:
             "w_bias_score": weighted_bias_score,
             "citation_score": citation_score,
             "w_citation_score": weighted_citation_score,
-            "final_score": final_score
+            "final_score": final_score,
+            "explanations": explanations
         }
 
 
@@ -249,24 +265,18 @@ class CredibilityChecker:
 
         star_ratings = filled + half + empty
         return star_ratings
-    
-    
-    def get_explanation(self):
-        explanation = "___" # TEMPORARY
-        return explanation
-    
 
     def credibility_score(self, prompt, url):
         scores = self.validate_url(prompt, url)
         credibility_score = round(scores['final_score'], 2)
         ratings = self.get_star_ratings(credibility_score)
-        explanation = self.get_explanation()
-        result = {'score': credibility_score, 'ratings': ratings, 'explanation': explanation}
+        explanations = scores['explanations']
+        result = {'score': credibility_score, 'ratings': ratings, 'explanation': explanations}
         return result
 
 
 # Example
-'''
+
 checker = CredibilityChecker()
 
 user_prompt = "I have just been on an international flight, can i come back home to hold my 1 month old newborn?"
@@ -274,7 +284,7 @@ url_ref = "https://www.bhtp.com/blog/when-safe-to-travel-with-newborn/"
 
 result = checker.credibility_score(user_prompt, url_ref)
 print(result)
-'''
+
 
 # Run file using teminal:
 # python credibility_checker.py

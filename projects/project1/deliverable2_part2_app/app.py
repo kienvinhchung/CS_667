@@ -17,6 +17,7 @@ if st.button("Check Credibility"):
         st.success("✅ Credibility Score Calculated!")
         st.write(f"**Score:** {result['score']} / 100")
         st.write(f"**Ratings:** {result['ratings']}")
+        st.write(f"**Explanation:** {result['explanation']}")
     else:
         st.warning("⚠️ Please enter both a query and a URL.")
 
