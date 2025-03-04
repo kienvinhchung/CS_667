@@ -43,7 +43,7 @@ class CredibilityChecker:
         "citation": 0.05             # 05.0%
     }
 
-
+    
     def __init__(self):
         self.sentiment_analyzer = pipeline("sentiment-analysis", model="cardiffnlp/twitter-roberta-base-sentiment")
         self.similarity_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
